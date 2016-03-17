@@ -1,5 +1,8 @@
 import os
-import ipaddress
+try:
+    from ipaddress import ip_address
+except ImportError:
+    from ipaddr import IPAddress as ip_address
 
 __author__ = 'alex'
 
@@ -21,7 +24,7 @@ def versioned_filepath(filepath, version=0):
 
 def validate_ip(address):
     try:
-        valid = ipaddress.ip_address(address)
+        valid = ip_address(address)
     except ValueError:
         valid = None
     return bool(valid)
